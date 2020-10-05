@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class QuizController {
     @GetMapping({"/", "quiz"})
     public String quiz(Model model) {
-        return "Quiz";
+        return "quiz";
     }
 }
