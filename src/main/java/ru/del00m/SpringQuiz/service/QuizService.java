@@ -1,6 +1,6 @@
 package ru.del00m.SpringQuiz.service;
 
-import ru.del00m.SpringQuiz.dto.Quiz;
+import ru.del00m.SpringQuiz.domain.Quiz;;
 
 import java.util.List;
 

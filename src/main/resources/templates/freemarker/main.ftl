@@ -6,7 +6,7 @@
     <title>Quiz</title>
 </head>
 <body>
-    <h1>Hello</h1>
+    <h1>Tests</h1>
     <#nested>
 </body>
 </html>
