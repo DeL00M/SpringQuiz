@@ -14,6 +14,7 @@ import ru.del00m.SpringQuiz.service.QuizService;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.UUID;
 
 @Controller
@@ -46,13 +47,13 @@ public class QuizController {
     public String add(@RequestParam String title, @RequestParam String description, @RequestParam("img") MultipartFile img, Model model) throws IOException {
         Quiz quiz = new Quiz(title, description);
         if (img != null) {
-            File uploadDir = new File(new File("").getAbsolutePath() + staticDirPath + imgUploadDir);
+            File uploadDir = new File(new File("").getAbsolutePath() + Paths.get(staticDirPath + imgUploadDir).toString());
             if (!uploadDir.exists()) {
                 uploadDir.mkdir();
             }
             String uuidFile = UUID.randomUUID().toString();
             String resultFileName = uuidFile + "_" + img.getOriginalFilename();
-            img.transferTo(new File(uploadDir + "/" + resultFileName));
+            img.transferTo(new File(uploadDir + File.separator + resultFileName));
             quiz.setImg(imgUploadDir + resultFileName);
         }
         quizRepository.save(quiz);
