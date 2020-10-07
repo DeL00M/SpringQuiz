@@ -13,12 +13,17 @@ public class Quiz {
 
     private String title;
     private String description;
-    private String img;
+    private String img = "/img/default.png";
 
     public Quiz(String title, String description, String img) {
         this.title = title;
         this.description = description;
         this.img = img;
+    }
+
+    public Quiz(String title, String description) {
+        this.title = title;
+        this.description = description;
     }
 
     public Quiz() {
