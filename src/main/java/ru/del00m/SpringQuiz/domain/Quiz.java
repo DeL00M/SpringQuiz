@@ -11,8 +11,8 @@ public class Quiz {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String title;
-    private String description;
+    private String title = "Title";
+    private String description = "Description";
     private String img = "/img/default.png";
 
     public Quiz(String title, String description, String img) {
