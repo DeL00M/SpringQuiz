@@ -53,7 +53,9 @@ public class QuizController {
             }
             String resultFileName = UUID.randomUUID() + "_" + img.getOriginalFilename();
             img.transferTo(new File(uploadDir + File.separator + resultFileName));
-            quiz.setImg(imgUploadDir + resultFileName);
+            if (!img.getOriginalFilename().isEmpty()) {
+                quiz.setImg(imgUploadDir + resultFileName);
+            }
         }
         quizRepository.save(quiz);
         return "addquiz";
