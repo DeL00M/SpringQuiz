@@ -31,3 +31,4 @@ build/
 
 ### VS Code ###
 .vscode/
+/db/app_db_h2.mv.db
