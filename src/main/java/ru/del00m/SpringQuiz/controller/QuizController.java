@@ -47,12 +47,11 @@ public class QuizController {
     public String add(@RequestParam String title, @RequestParam String description, @RequestParam("img") MultipartFile img, Model model) throws IOException {
         Quiz quiz = new Quiz(title, description);
         if (img != null) {
-            File uploadDir = new File(new File("").getAbsolutePath() + Paths.get(staticDirPath + imgUploadDir).toString());
+            File uploadDir = new File(System.getProperty("user.dir") + Paths.get(staticDirPath + imgUploadDir).toString());
             if (!uploadDir.exists()) {
                 uploadDir.mkdir();
             }
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFileName = uuidFile + "_" + img.getOriginalFilename();
+            String resultFileName = UUID.randomUUID() + "_" + img.getOriginalFilename();
             img.transferTo(new File(uploadDir + File.separator + resultFileName));
             quiz.setImg(imgUploadDir + resultFileName);
         }
