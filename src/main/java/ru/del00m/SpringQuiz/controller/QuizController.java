@@ -31,6 +31,9 @@ public class QuizController {
     @Value("${img.path}")
     private String imgPath;
 
+    @Value("${img.default.name}")
+    private String defaultImgName;
+
     public QuizController(QuizRepository quizRepository) {
         this.quizRepository = quizRepository;
     }
@@ -38,7 +41,9 @@ public class QuizController {
     @GetMapping({"/", "quiz"})
     public String show(Model model) {
         model.addAttribute("quizzes", quizRepository.findAll());
-        model.addAttribute("imgDir", imgUploadDir);
+        model.addAttribute("imgDir", imgPath);
+        model.addAttribute("imgUploadDir", imgUploadDir);
+        model.addAttribute("defaultImgName", defaultImgName);
         return "quiz";
     }
 

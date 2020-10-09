@@ -7,9 +7,9 @@
         <div class="card">
           <div class="card-image waves-effect waves-block waves-light">
             <#if quiz.img != "">
-              <#assign imgPath=imgDir + "/" + quiz.img>
+              <#assign imgPath=imgUploadDir + "/" + quiz.img>
             <#else>
-              <#assign imgPath="/img/default.png">
+              <#assign imgPath=imgDir + "/" + defaultImgName>
             </#if>
             <img class="activator" src=${imgPath}>
           </div>
