@@ -28,6 +28,9 @@ public class QuizController {
     @Value("${static_dir.path}")
     private String staticDirPath;
 
+    @Value("${img.path}")
+    private String imgPath;
+
     public QuizController(QuizRepository quizRepository) {
         this.quizRepository = quizRepository;
     }
@@ -48,7 +51,7 @@ public class QuizController {
     public String add(@RequestParam String title, @RequestParam String description, @RequestParam("img") MultipartFile img, Model model) throws IOException {
         Quiz quiz = new Quiz(title, description);
         if (img != null) {
-            File uploadDir = new File(System.getProperty("user.dir") + staticDirPath + imgUploadDir);
+            File uploadDir = new File(System.getProperty("user.dir") + staticDirPath + imgPath + imgUploadDir);
             if (!uploadDir.exists()) {
                 uploadDir.mkdir();
             }

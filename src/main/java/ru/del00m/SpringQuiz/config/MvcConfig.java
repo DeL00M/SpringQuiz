@@ -18,6 +18,9 @@ public class MvcConfig implements WebMvcConfigurer {
     @Value("${static_dir.path}")
     private String staticDirPath;
 
+    @Value("${img.path}")
+    private String imgPath;
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/quiz").setViewName("quiz");
@@ -29,7 +32,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        String path = "file:///" + System.getProperty("user.dir") + staticDirPath + imgUploadDir + File.separator;
-        registry.addResourceHandler(imgUploadDir + "/**").addResourceLocations(path);
+        registry.addResourceHandler(imgUploadDir + "/**").addResourceLocations(
+                "file:///" + System.getProperty("user.dir") + staticDirPath + imgPath + imgUploadDir + File.separator);
     }
 }
