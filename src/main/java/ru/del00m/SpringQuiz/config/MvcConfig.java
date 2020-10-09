@@ -3,6 +3,7 @@ package ru.del00m.SpringQuiz.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.io.File;
@@ -18,8 +19,17 @@ public class MvcConfig implements WebMvcConfigurer {
     private String staticDirPath;
 
     @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/quiz").setViewName("quiz");
+        registry.addViewController("/").setViewName("quiz");
+        registry.addViewController("/addquiz").setViewName("addquiz");
+        registry.addViewController("/hello").setViewName("hello");
+        registry.addViewController("/login").setViewName("login");
+    }
+
+    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        String path = "file:" + File.separator + File.separator + File.separator + System.getProperty("user.dir") + Paths.get(staticDirPath + imgUploadDir) + File.separator;
-        registry.addResourceHandler(imgUploadDir + "**").addResourceLocations(path);
+        String path = "file:///" + System.getProperty("user.dir") + staticDirPath + imgUploadDir + File.separator;
+        registry.addResourceHandler(imgUploadDir + "/**").addResourceLocations(path);
     }
 }
