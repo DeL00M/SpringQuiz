@@ -35,6 +35,7 @@ public class QuizController {
     @GetMapping({"/", "quiz"})
     public String show(Model model) {
         model.addAttribute("quizzes", quizRepository.findAll());
+        model.addAttribute("imgDir", imgUploadDir);
         return "quiz";
     }
 
@@ -55,7 +56,7 @@ public class QuizController {
             String resultFileName = UUID.randomUUID().toString() + originalFileExtension;
             img.transferTo(new File(uploadDir + File.separator + resultFileName));
             if (!img.getOriginalFilename().isEmpty()) {
-                quiz.setImg(imgUploadDir + "/" + resultFileName);
+                quiz.setImg(resultFileName);
             }
         }
         quizRepository.save(quiz);

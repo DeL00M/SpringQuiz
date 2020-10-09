@@ -6,7 +6,8 @@
       <div class="col s2 center">
         <div class="card">
           <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" src=${quiz.img}>
+            <#assign imgPath=imgDir + "/" + quiz.img>
+            <img class="activator" src=${imgPath}>
           </div>
           <div class="card-content">
             <span class="card-title activator grey-text text-darken-4">${quiz.title}<i class="material-icons right">more_vert</i></span>
