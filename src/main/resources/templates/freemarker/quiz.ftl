@@ -1,29 +1,23 @@
 <#import "main.ftl" as main>
 <@main.page>
+
 <div class="container">
-<div class="row">
+<div class="card-deck">
 <#list quizzes as quiz>
-      <div class="col s2 center">
-        <div class="card">
-          <div class="card-image waves-effect waves-block waves-light">
-            <#if quiz.img != "">
-              <#assign imgPath=imgUploadDir + "/" + quiz.img>
-            <#else>
-              <#assign imgPath=imgDir + "/" + defaultImgName>
-            </#if>
-            <img class="activator" src=${imgPath}>
-          </div>
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">${quiz.title}<i class="material-icons right">more_vert</i></span>
-            <p><a href="#">Begin test</a></p>
-          </div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">${quiz.title}<i class="material-icons right">close</i></span>
-            <p>${quiz.description}</p>
-         </div>
-        </div>
-      </div>
-    </#list>
+  <div class="card">
+    <#if quiz.img != "">
+        <#assign imgPath=imgUploadDir + "/" + quiz.img>
+    <#else>
+        <#assign imgPath=imgDir + "/" + defaultImgName>
+    </#if>
+    <img class="card-img-top" style="width: 7rem; height: 10vh;" src=${imgPath} alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">${quiz.title}</h5>
+      <p class="card-text">${quiz.description}</p>
+      <a href="#" class="btn btn-primary">Begin test</a>
+    </div>
+  </div>
+</#list>
 </div>
 </div>
 </@main.page>
