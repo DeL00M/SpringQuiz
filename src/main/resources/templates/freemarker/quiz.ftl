@@ -6,10 +6,10 @@
       <div class="col s2 center">
         <div class="card">
           <div class="card-image waves-effect waves-block waves-light">
-            <#if quiz.img != "default.png">
+            <#if quiz.img != "">
               <#assign imgPath=imgDir + "/" + quiz.img>
             <#else>
-              <#assign imgPath="/img/" + quiz.img>
+              <#assign imgPath="/img/default.png">
             </#if>
             <img class="activator" src=${imgPath}>
           </div>
