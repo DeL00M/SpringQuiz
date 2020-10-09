@@ -20,6 +20,6 @@
   </div>
   </div>
 </#list>
-
+</div>
 </div>
 </@main.page>
