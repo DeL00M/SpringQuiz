@@ -20,7 +20,11 @@ import java.util.UUID;
 @Controller
 public class QuizController {
 
-    private QuizRepository quizRepository;
+    private QuizService quizService;
+
+    public QuizController(QuizService quizService) {
+        this.quizService = quizService;
+    }
 
     @Value("${img.upload.dir}")
     private String imgUploadDir;
@@ -34,13 +38,9 @@ public class QuizController {
     @Value("${img.default.name}")
     private String defaultImgName;
 
-    public QuizController(QuizRepository quizRepository) {
-        this.quizRepository = quizRepository;
-    }
-
-    @GetMapping({"/", "quiz"})
-    public String show(Model model) {
-        model.addAttribute("quizzes", quizRepository.findAll());
+    @GetMapping({"/"})
+    public String show(@RequestParam(required = false) String query, Model model) {
+        model.addAttribute("quizzes", quizService.find(query));
         model.addAttribute("imgDir", imgPath);
         model.addAttribute("imgUploadDir", imgUploadDir);
         model.addAttribute("defaultImgName", defaultImgName);
@@ -67,7 +67,7 @@ public class QuizController {
                 quiz.setImg(resultFileName);
             }
         }
-        quizRepository.save(quiz);
+        quizService.save(quiz);
         return "addquiz";
     }
 }

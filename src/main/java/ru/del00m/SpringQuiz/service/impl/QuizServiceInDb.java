@@ -20,4 +20,15 @@ public class QuizServiceInDb implements QuizService {
     public List<Quiz> getAll() {
         return quizRepository.findAll();
     }
+
+    @Override
+    public List<Quiz> find(String query) {
+        return query != null && !query.isEmpty() ? quizRepository.findAllByTitleLikeIgnoreCase("%" + query + "%") : quizRepository.findAll();
+    }
+
+    @Override
+    public void save(Quiz quiz) {
+        quizRepository.save(quiz);
+    }
+
 }

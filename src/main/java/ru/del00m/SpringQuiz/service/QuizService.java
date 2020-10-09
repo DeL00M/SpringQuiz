@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface QuizService {
     public List<Quiz> getAll();
+    public List<Quiz> find(String query);
+    public void save(Quiz quiz);
 }
