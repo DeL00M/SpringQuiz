@@ -13,7 +13,7 @@ public class Quiz {
 
     private String title = "Title";
     private String description = "Description";
-    private String img = "/img/default.png";
+    private String img = "default.png";
 
     public Quiz(String title, String description, String img) {
         this.title = title;

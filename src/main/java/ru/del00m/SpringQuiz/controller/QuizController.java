@@ -52,10 +52,10 @@ public class QuizController {
             if (!uploadDir.exists()) {
                 uploadDir.mkdir();
             }
-            String originalFileExtension = img.getOriginalFilename().substring(img.getOriginalFilename().lastIndexOf('.'));
-            String resultFileName = UUID.randomUUID().toString() + originalFileExtension;
-            img.transferTo(new File(uploadDir + File.separator + resultFileName));
             if (!img.getOriginalFilename().isEmpty()) {
+                String originalFileExtension = img.getOriginalFilename().substring(img.getOriginalFilename().lastIndexOf('.'));
+                String resultFileName = UUID.randomUUID().toString() + originalFileExtension;
+                img.transferTo(new File(uploadDir + File.separator + resultFileName));
                 quiz.setImg(resultFileName);
             }
         }
