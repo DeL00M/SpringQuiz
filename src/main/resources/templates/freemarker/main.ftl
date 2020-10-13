@@ -1,4 +1,5 @@
 <#macro page>
+<#include "security.ftl">
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,8 +27,17 @@
           <li class="nav-item">
             <a class="nav-link" href="/quiz/add">Add new quiz</a>
           </li>
-
         </ul>
+        <div class="navbar-text mr-2">You are signed in as ${name}</div>
+        <form action="/logout" method="post">
+        <#if known>
+        <#assign signcaption="Sign Out">
+        <#else>
+        <#assign signcaption="Sign In">
+        </#if>
+        <input type="submit" class="mr-3" value="${signcaption}"/>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -35,7 +45,9 @@
       </div>
     </nav>
 
+    <div class="container">
     <#nested>
+    </div>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/js/jquery-3.5.1.slim.min.js"></script>
