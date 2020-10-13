@@ -29,13 +29,13 @@
           </li>
         </ul>
         <div class="navbar-text mr-2">You are signed in as ${name}</div>
-        <form action="/logout" method="post">
+        <form class="form-inline my-2 my-lg-0" action="/logout" method="post">
         <#if known>
         <#assign signcaption="Sign Out">
         <#else>
         <#assign signcaption="Sign In">
         </#if>
-        <input type="submit" class="mr-3" value="${signcaption}"/>
+        <input class="btn btn-outline-success my-2 my-sm-0 mr-3" type="submit" value="${signcaption}"/>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
         <form class="form-inline my-2 my-lg-0">
