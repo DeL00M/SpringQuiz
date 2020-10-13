@@ -2,11 +2,13 @@ package ru.del00m.SpringQuiz.controller;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 import ru.del00m.SpringQuiz.domain.Quiz;
 import ru.del00m.SpringQuiz.repository.QuizRepository;
@@ -18,6 +20,7 @@ import java.nio.file.Paths;
 import java.util.UUID;
 
 @Controller
+
 public class QuizController {
 
     private QuizService quizService;
@@ -47,12 +50,13 @@ public class QuizController {
         return "quiz";
     }
 
-    @GetMapping("/addquiz")
+    @GetMapping("/quiz/add")
     public String add(Model model) {
         return "addquiz";
     }
 
-    @PostMapping("/addquiz")
+    @PostMapping("/quiz/add")
+    @ResponseStatus(HttpStatus.CREATED)
     public String add(@RequestParam String title, @RequestParam String description, @RequestParam("img") MultipartFile img, Model model) throws IOException {
         Quiz quiz = new Quiz(title, description);
         if (img != null) {

@@ -8,7 +8,7 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no"/>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -24,7 +24,7 @@
             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/addquiz">Add new quiz</a>
+            <a class="nav-link" href="/quiz/add">Add new quiz</a>
           </li>
 
         </ul>

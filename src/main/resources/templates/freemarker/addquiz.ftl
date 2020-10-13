@@ -1,7 +1,7 @@
 <#import "main.ftl" as main>
 <@main.page>
 
-<div class="container-fluid">
+<div class="container">
 <form method="post" enctype="multipart/form-data">
   <div class="form-group">
     <label for="title">Quiz title</label>
