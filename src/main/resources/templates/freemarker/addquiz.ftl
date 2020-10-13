@@ -2,8 +2,13 @@
 <@main.page>
 
 <div class="container">
+<form action="/logout" method="post">
+<input type="submit" value="Sign Out"/>
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+</form>
 <form method="post" enctype="multipart/form-data">
   <div class="form-group">
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     <label for="title">Quiz title</label>
     <input type="text" name="title" class="form-control" id="title">
   </div>

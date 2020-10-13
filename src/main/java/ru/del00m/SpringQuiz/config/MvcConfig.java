@@ -23,16 +23,12 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/quiz").setViewName("quiz");
-        registry.addViewController("/").setViewName("quiz");
-        registry.addViewController("/addquiz").setViewName("addquiz");
-        registry.addViewController("/hello").setViewName("hello");
         registry.addViewController("/login").setViewName("login");
     }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler(imgUploadDir + "/**").addResourceLocations(
+        registry.addResourceHandler(imgPath + imgUploadDir + "/**").addResourceLocations(
                 "file:///" + System.getProperty("user.dir") + staticDirPath + imgPath + imgUploadDir + File.separator);
     }
 }
