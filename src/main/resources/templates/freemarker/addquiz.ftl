@@ -1,6 +1,7 @@
 <#import "main.ftl" as main>
 <@main.page>
 
+<div class="container">
 <form method="post" enctype="multipart/form-data">
   <div class="form-group">
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -17,5 +18,6 @@
     </div>
   <button type="submit" class="btn btn-primary">Create new quiz</button>
 </form>
+</div>
 
 </@main.page>

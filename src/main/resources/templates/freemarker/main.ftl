@@ -45,9 +45,9 @@
       </div>
     </nav>
 
-    <div class="container">
+
     <#nested>
-    </div>
+
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/js/jquery-3.5.1.slim.min.js"></script>
