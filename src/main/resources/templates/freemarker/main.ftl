@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/sticky-footer.css">
 </head>
 
 <body>
@@ -44,10 +45,12 @@
         </form>
       </div>
     </nav>
-
-
-    <#nested>
-
+        <#nested>
+    <footer class="footer bg-dark">
+      <div class="container">
+        <span class="text-muted">Powered by DeL00M in 2020.</span>
+      </div>
+    </footer>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/js/jquery-3.5.1.slim.min.js"></script>
