@@ -48,7 +48,9 @@
         <#nested>
     <footer class="footer bg-dark">
       <div class="container">
+      <div class="text-center">
         <span class="text-muted">Powered by DeL00M in 2020.</span>
+      </div>
       </div>
     </footer>
 
