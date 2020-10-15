@@ -8,7 +8,7 @@
     <link href="/css/card-horizontal.css" rel="stylesheet">
   </head>
 
-<div class="container-fluid">
+<div class="col-md-10 mx-auto">
     <div class="row">
     <#list quizzes as quiz>
         <div class="col-md-4 mt-3">
