@@ -45,7 +45,9 @@
         </form>
       </div>
     </nav>
+        <div class="mt-3">
         <#nested>
+        </div>
     <footer class="footer bg-dark">
       <div class="container">
       <div class="text-center">
