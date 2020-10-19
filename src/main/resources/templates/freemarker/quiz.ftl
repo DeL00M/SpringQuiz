@@ -19,7 +19,7 @@
                     <#else>
                     <#assign imgName=imgDir + "/" + defaultImgName>
                     </#if>
-                    <img src="${imgName}" alt="Card image cap">
+                    <img src="${imgName}" width="80px" height="80px" alt="Card image cap">
                 </div>
                 <div class="card-body">
                     <h4 class="card-title text-wrap" style="width: 20rem;">${quiz.title}</h4>
