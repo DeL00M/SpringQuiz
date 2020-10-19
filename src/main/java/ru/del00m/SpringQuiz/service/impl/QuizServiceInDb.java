@@ -7,7 +7,7 @@ import ru.del00m.SpringQuiz.service.QuizService;
 
 import java.util.List;
 
-@Service("QuizServiceInDb")
+@Service
 public class QuizServiceInDb implements QuizService {
 
     private QuizRepository quizRepository;
