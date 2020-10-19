@@ -28,9 +28,11 @@
           <li class="nav-item">
             <a class="nav-link" href="/quiz/add">Add new quiz</a>
           </li>
+          <#if isAdmin>
           <li class="nav-item">
             <a class="nav-link" href="/user">Users</a>
           </li>
+          </#if>
         </ul>
         <div class="navbar-text mr-2">You are signed in as ${name}</div>
         <form class="form-inline my-2 my-lg-0" action="/logout" method="post">

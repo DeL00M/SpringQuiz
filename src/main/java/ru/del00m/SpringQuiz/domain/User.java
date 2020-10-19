@@ -86,4 +86,9 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
     }
+
+    public boolean isAdmin() {
+        return roles.contains(Role.ADMIN);
+    }
+
 }

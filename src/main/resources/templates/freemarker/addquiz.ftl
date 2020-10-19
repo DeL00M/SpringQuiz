@@ -13,9 +13,11 @@
     <input type="text" name="description" class="form-control" id="description">
   </div>
   <div class="form-group">
-      <label for="img">Quiz image</label>
-      <input type="file" name="img" class="form-control-file" id="img">
+    <div class="custom-file">
+      <label class=custom-file-label for="img">Quiz image</label>
+      <input type="file" name="img" id="img">
     </div>
+  </div>
   <button type="submit" class="btn btn-primary">Create new quiz</button>
 </form>
 </div>

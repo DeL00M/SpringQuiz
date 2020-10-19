@@ -25,14 +25,14 @@
                     <h4 class="card-title text-wrap" style="width: 20rem;">${quiz.title}</h4>
                     <p class="card-text text-wrap" style="width: 20rem;">${quiz.description}</p>
                     <a href="#" class="btn btn-primary">Begin test</a>
-                </div>
-                 <div class="text-muted">
+                    <div class="mt-2">
                     <small class="text-muted">Created by: ${quiz.authorName}</small>
+                    </div>
                 </div>
             </div>
         </div>
     </#list>
     </div>
-    </div>
+</div>
 
 </@main.page>
