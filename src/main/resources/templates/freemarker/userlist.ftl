@@ -1,8 +1,8 @@
 <#import "main.ftl" as main>
 <@main.page>
+<div class="container">
 Users
-
-<table>
+<table border="1">
     <thead>
     <tr>
         <th>Name</th>
@@ -18,4 +18,5 @@ Users
     </tr>
 </#list>
 </table>
+</div>
 </@main.page>

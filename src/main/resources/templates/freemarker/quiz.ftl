@@ -11,7 +11,7 @@
 <div class="col-md-10 mx-auto">
     <div class="row">
     <#list quizzes as quiz>
-        <div class="col-md-4 mt-3">
+        <div class="col-md-3 mt-3">
             <div class="card flex-row flex-wrap border-0">
                 <div class="card-header border-0" style="background-color: #FFFFFF;">
                     <#if quiz.img != "">
