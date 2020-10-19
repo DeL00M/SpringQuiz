@@ -26,9 +26,9 @@
                     <p class="card-text text-wrap" style="width: 20rem;">${quiz.description}</p>
                     <a href="#" class="btn btn-primary">Begin test</a>
                 </div>
-                <!--<div class="card-footer w-100 text-muted">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                </div>-->
+                 <div class="text-muted">
+                    <small class="text-muted">Created by: ${quiz.authorName}</small>
+                </div>
             </div>
         </div>
     </#list>

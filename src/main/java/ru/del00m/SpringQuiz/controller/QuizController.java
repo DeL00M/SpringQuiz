@@ -3,6 +3,7 @@ package ru.del00m.SpringQuiz.controller;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 import ru.del00m.SpringQuiz.domain.Quiz;
+import ru.del00m.SpringQuiz.domain.User;
 import ru.del00m.SpringQuiz.repository.QuizRepository;
 import ru.del00m.SpringQuiz.service.QuizService;
 
@@ -57,8 +59,13 @@ public class QuizController {
 
     @PostMapping("/quiz/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public String add(@RequestParam String title, @RequestParam String description, @RequestParam("img") MultipartFile img, Model model) throws IOException {
-        Quiz quiz = new Quiz(title, description);
+    public String add(
+            @AuthenticationPrincipal User user,
+            @RequestParam String title,
+            @RequestParam String description,
+            @RequestParam("img") MultipartFile img,
+            Model model) throws IOException {
+        Quiz quiz = new Quiz(title, description, user);
         if (img != null) {
             File uploadDir = new File(System.getProperty("user.dir") + staticDirPath + imgPath + imgUploadDir);
             if (!uploadDir.exists()) {
