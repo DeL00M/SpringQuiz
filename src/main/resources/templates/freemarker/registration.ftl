@@ -13,8 +13,8 @@
       <!--<img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
       <h1 class="h3 font-weight-normal">Registration</h1>
       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-      <label for="inputEmail" class="sr-only">User name</label>
-      <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Your name" required autofocus>
+      <label for="inputUserName" class="sr-only">User name</label>
+      <input type="text" name="username" id="inputUserName" class="form-control" placeholder="Your name" required autofocus>
       <label for="inputEmail" class="sr-only">Email</label>
       <input type="email" name="email" id="inputEmail" class="form-control mt-2" placeholder="your@email.com" required>
       <label for="inputPassword" class="sr-only">Password</label>

@@ -19,14 +19,11 @@ public class UserServiceInDb implements UserService {
 
     private UserRepository userRepository;
 
-    private MailSender mailSender;
+    private ConfirmationMailSender confirmationMailSender;
 
-    public UserServiceInDb(MailSender mailSender) {
-        this.mailSender = mailSender;
-    }
-
-    public UserServiceInDb(UserRepository userRepository) {
+    public UserServiceInDb(UserRepository userRepository, ConfirmationMailSender confirmationMailSender) {
         this.userRepository = userRepository;
+        this.confirmationMailSender = confirmationMailSender;
     }
 
     @Override
@@ -54,7 +51,7 @@ public class UserServiceInDb implements UserService {
                     user.getUsername(),
                     user.getActivationCode()
             );
-            mailSender.send(user.getEmail(), "Activation code", message);
+            confirmationMailSender.send(user.getEmail(), "Activation code", message);
         }
         return true;
     }
