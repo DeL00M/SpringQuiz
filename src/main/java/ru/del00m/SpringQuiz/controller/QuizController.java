@@ -1,29 +1,30 @@
 package ru.del00m.SpringQuiz.controller;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.apache.tomcat.util.http.fileupload.impl.SizeLimitExceededException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
+import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.ModelAndView;
 import ru.del00m.SpringQuiz.domain.Quiz;
 import ru.del00m.SpringQuiz.domain.User;
-import ru.del00m.SpringQuiz.repository.QuizRepository;
 import ru.del00m.SpringQuiz.service.QuizService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.UUID;
 
 @Controller
-
-public class QuizController {
+public class QuizController implements HandlerExceptionResolver {
 
     private QuizService quizService;
 
@@ -59,26 +60,36 @@ public class QuizController {
 
     @PostMapping("/quiz/add")
     @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasAuthority('USER')")
     public String add(
             @AuthenticationPrincipal User user,
             @RequestParam String title,
             @RequestParam String description,
             @RequestParam("img") MultipartFile img,
             Model model) throws IOException {
-        Quiz quiz = new Quiz(title, description, user);
-        if (img != null) {
-            File uploadDir = new File(System.getProperty("user.dir") + staticDirPath + imgPath + imgUploadDir);
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
+            Quiz quiz = new Quiz(title, description, user);
+            if (!img.isEmpty()) {
+                File uploadDir = new File(System.getProperty("user.dir") + staticDirPath + imgPath + imgUploadDir);
+                if (!uploadDir.exists()) {
+                    uploadDir.mkdir();
+                }
+                if (!img.getOriginalFilename().isEmpty()) {
+                    String originalFileExtension = img.getOriginalFilename().substring(img.getOriginalFilename().lastIndexOf('.'));
+                    String resultFileName = UUID.randomUUID().toString() + originalFileExtension;
+                    img.transferTo(new File(uploadDir + File.separator + resultFileName));
+                    quiz.setImg(resultFileName);
+                }
             }
-            if (!img.getOriginalFilename().isEmpty()) {
-                String originalFileExtension = img.getOriginalFilename().substring(img.getOriginalFilename().lastIndexOf('.'));
-                String resultFileName = UUID.randomUUID().toString() + originalFileExtension;
-                img.transferTo(new File(uploadDir + File.separator + resultFileName));
-                quiz.setImg(resultFileName);
-            }
+            quizService.save(quiz);
+            return "redirect:/addquiz";
+    }
+
+    @Override
+    public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
+        ModelAndView modelAndView = new ModelAndView("addquiz");
+        if (e instanceof MaxUploadSizeExceededException) {
+            modelAndView.getModel().put("message", "The file size must be less or equal 1MB");
         }
-        quizService.save(quiz);
-        return "addquiz";
+        return modelAndView;
     }
 }
