@@ -63,6 +63,7 @@ public class UserServiceInDb implements UserService {
             return false;
         }
         user.setActivationCode(null);
+        user.setActive(true);
         userRepository.save(user);
         return true;
     }
