@@ -5,6 +5,5 @@ import ru.del00m.SpringQuiz.domain.User;
 
 public interface UserService extends UserDetailsService {
     boolean addUser(User user);
-
     boolean activateUser(String code);
 }
