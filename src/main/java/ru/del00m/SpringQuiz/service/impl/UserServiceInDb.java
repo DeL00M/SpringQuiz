@@ -37,7 +37,7 @@ public class UserServiceInDb implements UserService {
         if (existedUser != null) {
             return false;
         }
-        user.setActive(true);
+        user.setActive(false);
         user.setRoles(Collections.singleton(Role.USER));
         user.setActivationCode(UUID.randomUUID().toString());
         PasswordEncoder encoder =
